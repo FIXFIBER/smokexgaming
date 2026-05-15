@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing | Smoke X Gaming</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" href="landing.css" />
+    <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <style>
+        body {
+            background-color: #1a1a1a !important; /* Base fallback color */
+        }
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; /* Positioned behind main content but above body background */
+            overflow: hidden;
+            pointer-events: none; /* Allows you to click links through the video layer */
+        }
+        #bg-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0; /* Start hidden for smooth fade-in */
+            transition: opacity 2s ease-in-out; /* Smooth cover transition */
+            display: block;
+        }
+        main {
+            position: relative;
+            z-index: 5; /* Forces the text and buttons to the front */
+            background: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-shelf"></div>
+    <div class="vignette"></div>
+    <div class="scanlines"></div>
+
+    <div class="video-container">
+        <video id="bg-video" autoplay muted playsinline preload="auto">
+            <source id="video-source" type="video/mp4">
+        </video>
+    </div>
+
+    <main>
+        <!-- HUD 3D Curved Navigation -->
+        <nav class="hud-nav-container">
+            <div class="hamburger-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+
+            <div class="hud-carousel">
+                <div class="nav-item" data-index="0">
+                    <span class="label">ABOUT</span>
+                    <div class="sub-menu">
+                        <span id="nav-link-games">GAMES</span>
+                        <span>COMMUNITY</span>
+                        <span>RULES</span>
+                    </div>
+                </div>
+                <div class="nav-item" data-index="1"><span class="label">WAGER</span></div>
+                <div class="nav-item" data-index="2"><span class="label">CREATORS</span></div>
+                <div class="nav-item active" data-index="3"><span class="label">NEWS</span></div>
+                <div class="nav-item" data-index="4"><span class="label">STORE</span></div>
+                <div class="nav-item" data-index="5">
+                    <span class="label">PARTNER</span>
+                    <div class="sub-menu">
+                        <span>BRANDS</span>
+                    </div>
+                </div>
+                <div class="nav-item" data-index="6"><span class="label">EVENT</span></div>
+            </div>
+            <div class="nav-controls">
+                <div class="nav-arrow prev">←</div>
+                <div class="nav-arrow next">→</div>
+            </div>
+            <div class="nav-underline"></div>
+        </nav>
+
+    <section class="info-section">
+        <div class="hero-master-wrapper">
+            <!-- Sub-Header: Scrolling Identity -->
+
+
+            <!-- Core Branding: Massive & Centered -->
+            <div class="main-hero-branding">
+                <div class="welcome-tag" data-splitting>WELCOME TO</div>
+                <h1 class="text-overlap" data-splitting>
+                    SMOKE<b>X</b>GAMING
+                </h1>
+            </div>
+
+            <!-- Supporting Intel -->
+            <p class="hero-mission-statement">
+                Bringing African competitive gaming to its absolute peak. 
+                Experience the elite standard of digital combat.
+            </p>
+
+            <!-- Action Portal -->
+            <div class="hero-action-stack">
+                <div class="auth-btn-group">
+                    <a href="auth.html" class="portal-btn login-btn">LOGIN</a>
+                    <a href="auth.html?form=signup" class="portal-btn signup-btn">REGISTER</a>
+                </div>
+                <h2 class="sub-headline">EXPLORE THE ARENA</h2>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Second Section: Community & Strategic Alliances -->
+    <section class="dark-section partner-section">
+        <div class="story-container">
+            <div class="story-badge">STRATEGIC ALLIANCES</div>
+            <h2 class="story-title">Our <span>Partners</span></h2>
+            <p class="story-intro">SmokeX Gaming isn't just a platform; it's an ecosystem. We collaborate with visionary brands that share our commitment to professionalizing the esports scene across Africa. Together, we provide the infrastructure and prestige required for champions to rise.</p>
+            
+            <div class="partner-marquee-container">
+                <div class="partner-marquee-inner">
+                    <!-- Elite Partner Set A -->
+                    <div class="partner-circle" data-description="Partner Two focuses on building community-driven esports infrastructure for the next generation."><img src="https://www.image2url.com/r2/default/files/1776526721804-1c4a4a0e-f4ae-47c5-b5e2-e7cc8e14f47a.739408f9-cff9-49ba-a616-1b138a5e5286" alt="partner2"></div>
+                    <div class="partner-circle" data-description="Partner Three is redefining mobile gaming optimization, delivering ultra low-latency solutions."><img src="https://www.image2url.com/r2/default/files/1776526798393-4667a8c3-4a26-4d3b-af69-0ce8591aed8c.7c193d2f-c3ce-4f48-acad-c196e23dbe1e" alt="partner3"></div>
+                    <div class="partner-circle" data-description="Partner Four provides the extreme focus and energy required for peak performance in the arena."><img src="https://www.image2url.com/r2/default/files/1776583614833-ffc2d8e7-20e1-413d-b97a-8dde1caee82f.adea4718-1fdd-42e9-ad0b-7a935f2abc40" alt="partner4"></div>
+                    <div class="partner-circle" data-description="Partner Five specializes in custom peripheral engineering for professional-grade reliability."><img src="https://www.image2url.com/r2/default/files/1776589775431-b7fa0c61-0c61-4b70-8d91-51d114eaf6f8.3c9c5414-b44e-4050-aa77-3e9a73e57bbd" alt="partner5"></div>
+                    
+                    <!-- Elite Partner Set B (Perfect Mirror for Loop) -->
+                    <div class="partner-circle" data-description="Partner Two focuses on building community-driven esports infrastructure for the next generation."><img src="https://www.image2url.com/r2/default/files/1776526721804-1c4a4a0e-f4ae-47c5-b5e2-e7cc8e14f47a.739408f9-cff9-49ba-a616-1b138a5e5286" alt="partner2"></div>
+                    <div class="partner-circle" data-description="Partner Three is redefining mobile gaming optimization, delivering ultra low-latency solutions."><img src="https://www.image2url.com/r2/default/files/1776526798393-4667a8c3-4a26-4d3b-af69-0ce8591aed8c.7c193d2f-c3ce-4f48-acad-c196e23dbe1e" alt="partner3"></div>
+                    <div class="partner-circle" data-description="Partner Four provides the extreme focus and energy required for peak performance in the arena."><img src="https://www.image2url.com/r2/default/files/1776583614833-ffc2d8e7-20e1-413d-b97a-8dde1caee82f.adea4718-1fdd-42e9-ad0b-7a935f2abc40" alt="partner4"></div>
+                    <div class="partner-circle" data-description="Partner Five specializes in custom peripheral engineering for professional-grade reliability."><img src="https://www.image2url.com/r2/default/files/1776589775431-b7fa0c61-0c61-4b70-8d91-51d114eaf6f8.3c9c5414-b44e-4050-aa77-3e9a73e57bbd" alt="partner5"></div>
+                </div>
+            </div>
+            
+            <div class="partner-desc-display">Hover over a partner to learn more about our strategic alliances.</div>
+
+            <div class="story-cta">
+                <div class="cta-line"></div>
+                <span>Fueling the future of African Esports.</span>
+            </div>
+        </div>
+    </section>
+
+        <!-- Mind-blowing Upcoming Section (Now Section 3) -->
+        <section class="upcoming-section">
+            <img id="upcoming-bg-image" class="upcoming-bg-image" alt="Background">
+            <div class="upcoming-blur-overlay"></div>
+            
+            <!-- Section 2 Header: The Official Logo (Bunny) evolved -->
+            <div class="section-header">
+                <div class="header-text-content">
+                    <div class="header-subtitle">SMOKEX SELECTION</div>
+                    <h2 class="header-main-title">AVAILABLE <span>GAMES</span></h2>
+                    <div class="header-line"></div>
+                </div>
+            </div>
+            
+            <div class="indicator"></div>
+            <div class="pin-wrapper">
+                <!-- Interactive Gaming Gallery -->
+                <div id="demo"></div>
+
+                <div class="details" id="details-even">
+                    <div class="place-box">
+                        <div class="text"></div>
+                    </div>
+                    <div class="title-box-1"><div class="title-1"></div></div>
+                    <div class="title-box-2"><div class="title-2"></div></div>
+                    <div class="desc fill-text">
+                        <span></span>
+                    </div>
+                    <div class="cta">
+                        <button class="discover">ENTER ARENA</button>
+                    </div>
+                </div>
+
+                <div class="details" id="details-odd">
+                    <div class="place-box">
+                        <div class="text"></div>
+                    </div>
+                    <div class="title-box-1"><div class="title-1"></div></div>
+                    <div class="title-box-2"><div class="title-2"></div></div>
+                    <div class="desc fill-text">
+                        <span></span>
+                    </div>
+                    <div class="cta">
+                        <button class="discover">ENTER ARENA</button>
+                    </div>
+                </div>
+
+                <div class="pagination" id="pagination">
+                    <div class="arrow arrow-left">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                        </svg>
+                    </div>
+                    <div class="arrow arrow-right">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="coming-soon-badge">STAY TUNED • MORE GAMES COMING SOON</div>
+
+                <div class="gallery-cover"></div>
+            </div>
+        </section>
+
+    <!-- New Fourth Section: Elite Onboarding & Video Story -->
+    <section class="dark-section">
+        <div class="story-container">
+            <div class="story-badge">THE DAWN OF LEGENDS</div>
+            <h2 class="story-title">Watch Our Tournament <span> on YouTube</span> </h2>
+            
+            <!-- Advanced Video Integration -->
+            <div class="video-embed-container">
+                <iframe 
+                    src="https://www.youtube.com/embed/Cq-elq1olto?autoplay=0&mute=1&loop=1&playlist=Cq-elq1olto" 
+                    title="YouTube video player" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <p class="story-intro">SmokeX Gaming is redefining the competitive landscape. Witness the high-octane action from our recent tournaments and see why we are the peak of African gaming.</p>
+            
+            <div class="story-badge" style="margin-bottom: 30px;">OTHER VIDEOS</div>
+            <div class="perks-grid">
+                <div class="video-embed-container" style="margin: 0;">
+                    <iframe 
+                        src="https://www.youtube.com/embed/ZASgrl_3kZc" 
+                        title="YouTube video player" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="video-embed-container" style="margin: 0;">
+                    <iframe 
+                        src="https://www.youtube.com/embed/pGMBBMNuMoI" 
+                        title="YouTube video player" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="video-embed-container" style="margin: 0;">
+                    <iframe 
+                        src="https://www.youtube.com/embed/2JObO9SEVmo" 
+                        title="YouTube video player" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="video-embed-container" style="margin: 0;">
+                    <iframe 
+                        src="https://www.youtube.com/embed/EZok_Gvdt9k" 
+                        title="YouTube video player" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+            <div class="story-cta">
+                <div class="cta-line"></div>
+                <span>Join the revolution. Become a Legend.</span>
+            </div>
+        </div>
+    </section>
+
+        <!-- Advanced Elite Footer -->
+        <footer class="elite-footer">
+            <div class="footer-glow-line"></div>
+            <div class="footer-container">
+                <div class="story-container" style="margin: 0 auto 60px;">
+                    <div class="story-badge">JOIN THE MOVEMENT</div>
+                    <h2 class="story-title">Connect With <span>The Elite</span></h2>
+                    <p class="story-intro">The journey doesn't end here. Join thousands of African gamers in our official Discord and WhatsApp communities to stay updated on daily tournaments and exclusive rewards.</p>
+                    
+                    <div class="social-links-container">
+                        <a href="#" class="social-btn facebook" style="--i:1"><div class="tooltip">Facebook</div><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-btn twitter" style="--i:2"><div class="tooltip">X / Twitter</div><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" class="social-btn instagram" style="--i:3"><div class="tooltip">Instagram</div><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-btn youtube" style="--i:4"><div class="tooltip">YouTube</div><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-btn discord" style="--i:5"><div class="tooltip">Discord</div><i class="fab fa-discord"></i></a>
+                        <a href="#" class="social-btn whatsapp" style="--i:6"><div class="tooltip">WhatsApp</div><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="social-btn tiktok" style="--i:7"><div class="tooltip">TikTok</div><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="social-btn twitch" style="--i:8"><div class="tooltip">Twitch</div><i class="fab fa-twitch"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-brand">
+                    <div class="footer-logo">SMOKE<b>X</b>GAMING</div>
+                    <div class="footer-tagline">DEFINING THE PEAK OF AFRICAN GAMING</div>
+                </div>
+                
+                <div class="footer-copyright">
+                    <p>&copy; <span id="footer-year">2026</span> SMOKEX GAMING. ALL RIGHTS RESERVED.</p>
+                    <div class="legal-links"><a href="#">PRIVACY</a> <a href="#">TERMS</a> <a href="#">RULES</a></div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Elite Auth Modal -->
+    <div class="auth-overlay" id="authOverlay">
+        <div class="auth-modal">
+            <div class="close-auth"><i class="fas fa-times"></i></div>
+            <div class="auth-tabs">
+                <span class="auth-tab active" data-target="login-form">SIGN IN</span>
+                <span class="auth-tab" data-target="register-form">REGISTER</span>
+            </div>
+            
+            <div class="auth-form-container">
+                <!-- Login Form -->
+                <form id="login-form" class="auth-form active">
+                    <div class="input-group">
+                        <input type="email" id="login-email" placeholder="EMAIL ADDRESS" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="login-pass" placeholder="PASSWORD" required>
+                    </div>
+                    <button type="submit" class="auth-submit">
+                        <span>ENTER THE ARENA</span>
+                        <div class="btn-spinner"></div>
+                    </button>
+                    <p class="auth-footer">Forgot password? <a href="#" id="forgot-password-link">Reset Here</a></p>
+                </form>
+
+                <!-- Register Form -->
+                <form id="register-form" class="auth-form">
+                    <div class="input-group">
+                        <input type="text" id="reg-user" placeholder="GAMERTAG" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" id="reg-email" placeholder="EMAIL ADDRESS" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="reg-pass" placeholder="CREATE PASSWORD" required>
+                    </div>
+                    <div class="input-group" id="reg-otp-group" style="display:none;">
+                        <input type="text" id="reg-otp" placeholder="VERIFICATION CODE (Check Email)" maxlength="6">
+                    </div>
+                    <button type="submit" id="reg-submit-btn" class="auth-submit">
+                        <span>JOIN THE ELITE</span>
+                        <div class="btn-spinner"></div>
+                    </button>
+                </form>
+
+                <!-- Forgot Password Form -->
+                <form id="forgot-form" class="auth-form">
+                    <div class="input-group">
+                        <input type="email" id="forgot-email" placeholder="YOUR EMAIL ADDRESS" required>
+                    </div>
+                    <button type="submit" class="auth-submit">
+                        <span>SEND RESET CODE</span>
+                        <div class="btn-spinner"></div>
+                    </button>
+                    <p class="auth-footer"><a href="#" class="back-to-login">Back to Sign In</a></p>
+                </form>
+
+                <!-- Reset Password Form (Final Step) -->
+                <form id="reset-form" class="auth-form">
+                    <div class="input-group">
+                        <input type="text" id="reset-otp" placeholder="6-DIGIT CODE" required maxlength="6">
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="reset-new-pass" placeholder="NEW PASSWORD" required>
+                    </div>
+                    <button type="submit" class="auth-submit">
+                        <span>UPDATE PASSWORD</span>
+                        <div class="btn-spinner"></div>
+                    </button>
+                </form>
+            </div>
+            <div id="auth-message-container" class="auth-message-container">
+                <p id="auth-message-text"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+    <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
+    <script src="landing.js"></script>
+</body>
+</html>

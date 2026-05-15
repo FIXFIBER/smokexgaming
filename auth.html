@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Portal | SmokeX Gaming</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="auth.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+    <div class="main">
+        <!-- Create Account Container -->
+        <div class="container a-container" id="a-container">
+            <form id="a-form" class="form">
+                <h2 class="form_title title">SIGN UP</h2>
+                <div class="form__icons">
+                    <i class="fab fa-facebook-f form__icon"></i>
+                    <i class="fab fa-linkedin-in form__icon"></i>
+                    <i class="fab fa-twitter form__icon"></i>
+                </div>
+                <span class="form__span">Create an account with your email</span>
+                <div id="signup-fields">
+                    <input class="form__input" id="up-user" type="text" placeholder="USERNAME" required>
+                    <input class="form__input" id="up-email" type="email" placeholder="EMAIL" required>
+                    <input class="form__input" id="up-pass" type="password" placeholder="PASSWORD" required>
+                </div>
+                <div id="signup-otp-fields" style="display:none;">
+                    <input class="form__input" id="up-otp" type="text" placeholder="ENTER VERIFICATION CODE" maxlength="6">
+                </div>
+                <button type="submit" id="signup-btn" class="form__button button submit">
+                    <span>REGISTER</span>
+                    <div class="btn-spinner"></div>
+                </button>
+            </form>
+        </div>
+
+        <!-- Forgot Password Form -->
+        <div class="container c-container" id="c-container" style="display:none;">
+            <form id="forgot-form-auth" class="form">
+                <h2 class="form_title title">FORGOT PASSWORD</h2>
+                <div class="form__icons">
+                    <i class="fab fa-facebook-f form__icon"></i>
+                    <i class="fab fa-linkedin-in form__icon"></i>
+                    <i class="fab fa-twitter form__icon"></i>
+                </div>
+                <span class="form__span">Enter your email to receive a reset code</span>
+                <input class="form__input" id="forgot-email-auth" type="email" placeholder="EMAIL" required>
+                <button type="submit" id="forgot-btn-auth" class="form__button button submit">
+                    <span>RESET PASSWORD</span>
+                    <div class="btn-spinner"></div>
+                </button>
+                <a class="form__link back-to-signin-auth" href="#">Back to Sign In</a>
+            </form>
+        </div>
+
+        <!-- Reset Password Form -->
+        <div class="container d-container" id="d-container" style="display:none;">
+            <form id="reset-form-auth" class="form">
+                <h2 class="form_title title">RESET PASSWORD</h2>
+                <span class="form__span">Enter the code and your new password</span>
+                <input class="form__input" id="reset-otp-auth" type="text" placeholder="6-DIGIT CODE" required maxlength="6">
+                <input class="form__input" id="reset-new-pass-auth" type="password" placeholder="NEW PASSWORD" required>
+                <input class="form__input" id="reset-confirm-pass-auth" type="password" placeholder="CONFIRM NEW PASSWORD" required>
+                <button type="submit" id="reset-btn-auth" class="form__button button submit">
+                    <span>UPDATE PASSWORD</span>
+                    <div class="btn-spinner"></div>
+                </button>
+                <a class="form__link back-to-signin-auth" href="#">Back to Sign In</a>
+            </form>
+        </div>
+
+        <!-- Sign In Container -->
+        <div class="container b-container" id="b-container">
+            <form id="b-form" class="form">
+                <h2 class="form_title title">Sign In</h2>
+                <div class="form__icons">
+                    <i class="fab fa-facebook-f form__icon"></i>
+                    <i class="fab fa-linkedin-in form__icon"></i>
+                    <i class="fab fa-twitter form__icon"></i>
+                </div>
+                <span class="form__span">or sign in with your email</span>
+                <input class="form__input" id="in-email" type="email" placeholder="EMAIL" required>
+                <input class="form__input" id="in-pass" type="password" placeholder="PASSWORD" required>
+                <a class="form__link" id="auth-forgot-link" href="#">Forgot your password?</a>
+                <button type="submit" id="auth-btn" class="form__button button submit">
+                    <span>SIGN IN</span>
+                    <div class="btn-spinner"></div>
+                </button>
+            </form>
+            <div id="auth-message-container" class="auth-message-container">
+                <p id="auth-message-text"></p>
+            </div>
+        </div>
+
+        <!-- Sliding Switch Panel -->
+        <div class="switch" id="switch-cnt">
+            <div class="switch__circle"></div>
+            <div class="switch__circle switch__circle--t"></div>
+            
+            <div class="switch__container is-hidden" id="switch-c1">
+                <h2 class="switch__title title">SIGN IN</h2>
+                <p class="switch__description description">Welcome back. Please sign in to continue.</p>
+                <button class="switch__button button switch-btn" data-target="login">SIGN IN</button>
+            </div>
+            
+            <div class="switch__container" id="switch-c2">
+                <h2 class="switch__title title">REGISTER</h2>
+                <p class="switch__description description">Join the SmokeX community today.</p>
+                <button class="switch__button button switch-btn" data-target="signup">REGISTER</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Landing Link -->
+    <a href="landing.html" class="back-home">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+
+    <script src="auth.js"></script>
+</body>
+</html>

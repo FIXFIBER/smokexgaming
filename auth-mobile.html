@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SmokeX | Secure Access</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="auth-mobile.css">
+</head>
+<body>
+    <div id="auth-message-container" class="msg-container">
+        <p id="auth-message-text"></p>
+    </div>
+
+    <div class="mobile-auth-wrapper">
+        <header class="auth-header">
+            <a href="landing.html" class="back-link"><i class="fas fa-arrow-left"></i></a>
+            <div class="brand">SMOKEX <b>GAMING</b></div>
+        </header>
+
+        <div class="auth-card">
+            <div class="auth-tabs" id="main-tabs">
+                <div class="tab active" data-target="login-view">SIGN IN</div>
+                <div class="tab" data-target="signup-view">CREATE ACCOUNT</div>
+            </div>
+
+            <!-- Login View -->
+            <div id="login-view" class="auth-view active">
+                <form id="mobile-login-form">
+                    <div class="input-group">
+                        <label>EMAIL</label>
+                        <input type="email" id="m-in-email" placeholder="name@example.com" required>
+                    </div>
+                    <div class="input-group">
+                        <label>PASSWORD</label>
+                        <input type="password" id="m-in-pass" placeholder="••••••••" required>
+                    </div>
+                    <p class="forgot-trigger" id="m-forgot-btn">Forgot password?</p>
+                    <button type="submit" class="submit-btn">SIGN IN</button>
+                </form>
+            </div>
+
+            <!-- Signup View -->
+            <div id="signup-view" class="auth-view">
+                <form id="mobile-signup-form">
+                    <div id="m-signup-fields">
+                        <div class="input-group">
+                            <label>USERNAME</label>
+                            <input type="text" id="m-up-user" placeholder="Username" required>
+                        </div>
+                        <div class="input-group">
+                            <label>EMAIL</label>
+                            <input type="email" id="m-up-email" placeholder="email@example.com" required>
+                        </div>
+                        <div class="input-group">
+                            <label>PASSWORD</label>
+                            <input type="password" id="m-up-pass" placeholder="••••••••" required>
+                        </div>
+                    </div>
+                    <div id="m-otp-fields" style="display:none;">
+                        <div class="input-group">
+                            <label>VERIFICATION CODE</label>
+                            <input type="text" id="m-up-otp" placeholder="Enter 6-digit OTP">
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn" id="m-signup-btn">CREATE ACCOUNT</button>
+                </form>
+            </div>
+
+            <!-- Forgot/Reset View (Hidden initially) -->
+            <div id="forgot-view" class="auth-view">
+                <form id="mobile-forgot-form">
+                    <div class="input-group">
+                        <label>EMAIL ADDRESS</label>
+                        <input type="email" id="m-forgot-email" placeholder="Enter your email" required>
+                    </div>
+                    <button type="submit" class="submit-btn">RESET PASSWORD</button>
+                    <p class="back-to-tab" onclick="location.reload()">Return to Sign In</p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="auth-mobile.js"></script>
+</body>
+</html>

@@ -1,0 +1,446 @@
+:root {
+    --bg: #0a0a0a;
+    --gold: #ffd700;
+    --gold-flare: rgba(255, 215, 0, 0.4);
+    --dark-shadow: #000000;
+    --light-shadow: #1a1a1a;
+    --text-gray: #aaa;
+    --white: #ffffff;
+    --transition: 1.25s;
+    --ease-premium: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg);
+    color: var(--text-gray);
+    overflow: hidden;
+}
+
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    opacity: 0.4;
+}
+
+.main {
+    position: relative;
+    width: 95%;
+    max-width: 1000px;
+    min-height: 600px;
+    background-color: var(--bg);
+    box-shadow: 0 0 50px rgba(0,0,0,1), 0 0 2px var(--gold);
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    z-index: 10;
+}
+
+/* Title Glitch Effect */
+.title {
+    position: relative;
+}
+
+.title::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 2px;
+    text-shadow: -1px 0 red;
+    top: 0;
+    color: white;
+    background: var(--bg);
+    overflow: hidden;
+    clip: rect(0, 900px, 0, 0);
+    animation: noise-anim 2s infinite linear alternate-reverse;
+}
+
+@keyframes noise-anim {
+    0% { clip: rect(10px, 9999px, 50px, 0); }
+    100% { clip: rect(80px, 9999px, 90px, 0); }
+}
+
+@media(max-width: 1200px) { 
+    .main { 
+        width: 98%;
+        transform: scale(0.9); 
+    } 
+}
+
+@media(max-width: 768px) {
+    body {
+        background-color: #080710;
+        overflow-y: auto;
+        height: auto;
+        min-height: 100vh;
+        padding: 20px 0;
+    }
+
+    #particle-canvas {
+        display: none; /* Cleaner look for mobile glass effect */
+    }
+
+    .main {
+        width: 92%;
+        max-width: 400px;
+        min-height: auto;
+        background-color: rgba(255, 255, 255, 0.13) !important;
+        backdrop-filter: blur(15px) !important;
+        -webkit-backdrop-filter: blur(15px) !important;
+        border: 2px solid rgba(255, 255, 255, 0.1) !important;
+        box-shadow: 0 0 40px rgba(8, 7, 16, 0.6) !important;
+        border-radius: 15px;
+        display: block;
+        padding: 30px 20px;
+        margin: auto;
+        border-radius: 15px;
+    }
+
+    /* Immersive Background Shapes for Mobile */
+    body::before, body::after {
+        content: '';
+        position: fixed;
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        z-index: -1;
+        filter: blur(50px);
+    }
+
+    body::before {
+        background: linear-gradient(#1845ad, #23a2f6);
+        left: -100px;
+        top: 10%;
+    }
+
+    body::after {
+        background: linear-gradient(to right, #ff512f, #f09819);
+        right: -80px;
+        bottom: 10%;
+    }
+
+    .switch {
+        display: none;
+    }
+
+    .container {
+        position: relative;
+        width: 100%;
+        height: auto;
+        left: 0 !important;
+        padding: 0;
+        background: transparent;
+        /* Removed !important to allow GSAP autoAlpha to work */
+        pointer-events: auto;
+    }
+
+    .form {
+        padding: 10px 0;
+    }
+
+    .title {
+        font-size: 32px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .form__input {
+        max-width: 100%;
+        height: 55px;
+        background-color: rgba(255, 255, 255, 0.07);
+        border-radius: 8px;
+        font-size: 16px; /* Critical for iOS zoom prevention */
+        box-shadow: none;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .button {
+        width: 100%;
+        height: 60px;
+        margin-top: 30px;
+        background: #ffffff;
+        color: #080710;
+        font-size: 16px;
+        border-radius: 8px;
+    }
+
+    .form__icons {
+        margin-top: 30px;
+        width: 100%;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .form__icon {
+        width: 50px;
+        height: 50px;
+        background-color: rgba(255, 255, 255, 0.27);
+        box-shadow: none;
+    }
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    width: 60%; /* Occupies the remaining space of the 40% switch */
+    height: 100%;
+    padding: 25px;
+    background-color: var(--bg);
+    transition: none; /* Let GSAP handle it for smoothness */
+    will-change: transform, opacity;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 40px 0;
+}
+
+.form__icons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.form__icon {
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    box-shadow: 4px 4px 8px var(--dark-shadow), -4px -4px 8px var(--light-shadow);
+    color: var(--gold);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.form__icon:hover {
+    color: #fff;
+    box-shadow: 0 0 15px var(--gold);
+    transform: translateY(-5px) scale(1.1);
+}
+
+.form__input {
+    width: 100%;
+    max-width: 350px;
+    height: 45px;
+    margin: 8px 0;
+    padding-left: 25px;
+    font-size: 13px;
+    letter-spacing: .15px;
+    border: none;
+    font-family: 'Space Grotesk', sans-serif;
+    background-color: var(--bg);
+    color: var(--white);
+    transition: .25s ease;
+    border-radius: 12px;
+    box-shadow: inset 4px 4px 8px var(--dark-shadow), inset -4px -4px 8px var(--light-shadow);
+}
+
+.form__input:focus {
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.1);
+    border: 1px solid var(--gold);
+}
+
+.form__span {
+    margin-top: 20px;
+    margin-bottom: 12px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.form__link {
+    color: var(--white);
+    font-size: 12px;
+    margin-top: 25px;
+    border-bottom: 1px solid var(--text-gray);
+    cursor: pointer;
+}
+
+.title {
+    font-size: 42px; /* Bigger, more mature title */
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 0 15px rgba(255,255,255,0.1);
+}
+
+.description {
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-align: center;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.6);
+}
+
+.button {
+    width: 200px;
+    height: 55px;
+    border-radius: 30px;
+    margin-top: 40px;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, var(--gold), #b8860b);
+    color: var(--bg);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 0 25px var(--gold-flare);
+    filter: brightness(1.2);
+}
+
+.button.loading {
+    color: transparent !important;
+    pointer-events: none;
+}
+
+.button.loading span {
+    opacity: 0;
+}
+
+.btn-spinner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(0, 0, 0, 0.2);
+    border-top-color: #000;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.button.loading .btn-spinner {
+    opacity: 1;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.switch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 40%;
+    padding: 50px;
+    z-index: 300;
+    transition: none;
+    background-color: var(--bg);
+    overflow: hidden;
+    box-shadow: 0 0 60px rgba(0,0,0,1);
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    will-change: transform;
+}
+
+.switch__circle {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background-color: var(--bg);
+    box-shadow: inset 0 0 50px var(--gold-flare);
+    bottom: -60%;
+    left: -60%;
+    transition: none;
+}
+
+.switch__circle--t {
+    top: -30%;
+    left: 60%;
+    width: 300px;
+    height: 300px;
+}
+
+.switch__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    padding: 50px 55px;
+    transition: none;
+}
+
+.is-z200 { z-index: 300 !important; }
+.is-hidden { visibility: hidden; opacity: 0; position: absolute; pointer-events: none; }
+
+.a-container { z-index: 0; left: 40%; }
+.b-container { left: 40%; z-index: 100; }
+
+/* Blocking Fix: Ensure inactive container is click-through */
+.container:not(.is-active-form) {
+    pointer-events: none;
+    opacity: 0;
+}
+
+.back-home {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 18px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.back-home:hover {
+    background: var(--gold);
+    color: var(--bg);
+}
+
+.is-gx {
+    /* Deformation fix: No width expansion, just a glow pulse */
+    box-shadow: 0 0 100px var(--gold-flare) !important;
+    filter: brightness(1.5);
+}
+
+/* GSAP will handle the "Mind Blowing" movement now */

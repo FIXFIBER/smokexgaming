@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamer Command Center | SmokeX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div id="dashboard-container">
+        <div class="leftside-menu">
+            <div class="avatar">
+                <div class="icon"><p id="user-initials">XP</p></div>
+                <p id="display-username">Gamer Name</p>
+            </div>
+            <nav class="menu">
+                <li class="active" id="nav-home"><i class="fas fa-home"></i> Home</li>
+                <li id="nav-games"><i class="fas fa-gamepad"></i> My Games</li>
+                <li id="nav-achievements"><i class="fas fa-trophy"></i> Achievements</li>
+                <li id="nav-contacts"><i class="fas fa-users"></i> Contacts</li>
+                <li id="nav-settings"><i class="fas fa-cog"></i> Settings</li>
+                <li class="logout-btn"><i class="fas fa-power-off"></i> Logout</li>
+            </nav>
+        </div>
+
+        <div class="main-grid" id="home-view">
+            <div class="item one">
+                <h1 id="time" class="time">00:00</h1>
+                <h1 id="greeting">GOOD DAY</h1>
+                <p class="gold-text" id="welcome-name">CHAMPION</p>
+            </div>
+
+            <div class="item four">
+                <h1 id="date">JANUARY 01, 2024</h1>
+                <p><a>NO TOURNAMENTS TODAY</a></p>
+            </div>
+        </div>
+
+        <!-- Games View (Hidden by default) -->
+        <div class="main-grid" id="games-view" style="display: none;">
+            <div class="games-header-container">
+                <h2 class="gold-text">AVAILABLE GAMES</h2>
+                <p>WARNING: YOU CAN ONLY CHOOSE ONE DISCIPLINE EVERY 60 DAYS</p>
+            </div>
+            
+            <div class="game-card item" data-game="FREE FIRE">
+                <div class="game-card-bg" style="background-image: url('https://www.image2url.com/r2/default/files/1777193158475-fccd98d8-027d-48d2-a269-5a557fbb85b0.jpg');"></div>
+                <div class="game-badge">BATTLE ROYALE</div>
+                <h3>FREE FIRE</h3>
+                <p>Fast-paced survival combat.</p>
+                <button class="participate-btn">PARTICIPATE</button>
+            </div>
+
+            <div class="game-card item" data-game="E-FOOTBALL">
+                <div class="game-card-bg" style="background-image: url('https://www.image2url.com/r2/default/files/1777193297204-c9b82e83-6015-47d1-b2b1-18878159974a.jpg');"></div>
+                <div class="game-badge">SOCCER SIM</div>
+                <h3>E-FOOTBALL</h3>
+                <p>Realistic pitch dynamics.</p>
+                <button class="participate-btn">PARTICIPATE</button>
+            </div>
+
+            <div class="game-card item" data-game="FIFA">
+                <div class="game-card-bg" style="background-image: url('https://www.image2url.com/r2/default/files/1777193221182-a99b619b-59bf-4850-980d-2e05dc2edcc3.jpg');"></div>
+                <div class="game-badge">EA SPORTS</div>
+                <h3>FIFA</h3>
+                <p>The ultimate football challenge.</p>
+                <button class="participate-btn">PARTICIPATE</button>
+            </div>
+        </div>
+
+        <!-- Settings View (Hidden by default) -->
+        <div class="main-grid" id="settings-view" style="display: none;">
+            <div class="item settings-card">
+                <div class="settings-header">
+                    <h2 class="gold-text">EDIT PROFILE</h2>
+                    <p>Update your appearance in the Arena</p>
+                </div>
+                
+                <div class="profile-config-section">
+                    <div class="profile-avatar-display" id="settings-avatar-display">
+                        <div class="icon large-icon" id="settings-profile-icon">
+                            <!-- Avatar or Initials will be here -->
+                        </div>
+                        <div class="edit-badge"><i class="fas fa-pencil-alt"></i></div>
+                        <p class="gold-text">TAP TO CHANGE IDENTITY</p>
+                    </div>
+
+                    <div class="avatar-selection-container" id="avatar-selection-container" style="display: none;">
+                        <label>CHOOSE YOUR FACE</label>
+                        <div class="avatar-picker" id="avatar-picker">
+                            <!-- Avatars injected by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-header">
+                    <h2 class="gold-text">GAMERTAG <i class="fas fa-pencil-alt" id="toggle-username-field" style="cursor:pointer; margin-left: 10px; font-size: 0.8em;"></i></h2>
+                </div>
+
+                <form id="update-profile-form" class="settings-form" style="display: none;">
+                    <div class="input-group">
+                        <input type="text" id="settings-username" placeholder="ENTER NEW NAME">
+                    </div>
+                    <button type="submit" class="save-settings-btn" id="save-profile-settings">
+                        <span>UPDATE GAMERTAG</span>
+                        <div class="btn-spinner"></div>
+                    </button>
+                </form>
+
+                <div class="settings-header" style="margin-top: 40px;">
+                    <h2 class="gold-text">CHANGE PASSWORD <i class="fas fa-pencil-alt" id="toggle-password-fields" style="cursor:pointer; margin-left: 10px; font-size: 0.8em;"></i></h2>
+                </div>
+
+                <form id="change-password-form" class="settings-form" style="display: none;">
+                    <div class="input-group"><label>CURRENT PASSWORD</label><input type="password" id="current-password" required></div>
+                    <div class="input-group"><label>NEW PASSWORD</label><input type="password" id="new-password" required></div>
+                    <div class="input-group"><label>CONFIRM NEW PASSWORD</label><input type="password" id="confirm-new-password" required></div>
+                    <button type="submit" class="save-settings-btn" id="save-password-settings">
+                        <span>UPDATE PASSWORD</span>
+                        <div class="btn-spinner"></div>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>SMOKEX GAMING ARENA | © <span id="footer-year">2024</span></p>
+    </footer>
+
+    <!-- Elite Arena Confirmation Overlay -->
+    <div id="arena-confirm-overlay" class="hud-modal-overlay">
+        <div class="hud-modal-content">
+            <div class="hud-modal-header">
+                <span class="gold-text">PROTOCOL INITIATION</span>
+            </div>
+            <div class="hud-modal-body">
+                <p>DO YOU WISH TO COMMIT TO <span id="target-game-name" class="gold-text">GAME</span>?</p>
+                <p class="small-intel">THIS DISCIPLINE WILL BE LOCKED TO YOUR IDENTITY FOR THE NEXT 60 DAYS.</p>
+            </div>
+            <div class="hud-modal-footer">
+                <button id="abort-arena" class="hud-btn-abort">ABORT</button>
+                <button id="confirm-arena" class="hud-btn-initiate">INITIATE</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="dashboard-message-container" class="dashboard-message-container">
+        <p id="dashboard-message-text"></p>
+    </div>
+    <script src="dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+/* /home/darkaxis/Smokexgaming/loading-svg.css */
+@import url(https://fonts.bunny.net/css?family=familjen-grotesk:700);
+
+:root {
+  --crack-delay: 3s;
+  --crack-duration: 100ms;
+}
+
+#svg-loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.1); /* Clearer overlay initially */
+  backdrop-filter: blur(0px); /* Start with no blur */
+  -webkit-backdrop-filter: blur(0px);
+  z-index: 999; /* Above video and other background elements */
+  opacity: 0; /* Hidden by default, script will make it active */
+  visibility: hidden;
+  transition: opacity 0.5s ease-out, backdrop-filter 0.4s ease-in;
+}
+
+#svg-loading-screen.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+#svg-loading-screen.shattered {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(25px); /* High blur only when glass breaks */
+  -webkit-backdrop-filter: blur(25px);
+}
+
+#svg-loading-screen svg {
+  max-width: 1400px; /* Much bigger for desktop */
+  max-height: 100%;
+  width: 95%; /* Better fit for mobile */
+  height: 100%; /* Make SVG responsive */
+  object-fit: contain; /* Ensure the SVG scales properly */
+  filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.1));
+}
+
+#title-text {
+  animation-name: scale, blur, quiver, shake;
+  animation-duration: 3s, 142ms, 100ms, 50ms;
+  animation-iteration-count: 1, 14, 10, 20;
+  animation-delay: 0s, 1s, 1s, 2s;
+  animation-direction: normal, alternate-reverse, alternate-reverse,
+    alternate-reverse;
+  animation-timing-function: linear, linear, ease-in, ease-in;
+  animation-fill-mode: forwards, none, forwards, forwards;
+
+  transform-origin: center;
+}
+
+#title-left {
+  --crack-clip: polygon(
+    7.76% 9.16%,
+    18.81% 39.67%,
+    27.09% 45.26%,
+    41.57% 66.95%,
+    43.11% 84.74%,
+    20.18% 84.74%,
+    -2.07% 85.26%,
+    -1.55% 11.69%
+  );
+
+  animation-name: crack-left;
+  animation-delay: var(--crack-delay);
+  animation-duration: var(--crack-duration);
+  animation-fill-mode: forwards;
+}
+
+#title-right {
+  --crack-clip: polygon(
+    70% 24.4%,
+    100.52% 23.9%,
+    100.52% 88.3%,
+    64.31% 87.8%,
+    43.96% 42.04%,
+    40.33% 27.3%
+  );
+
+  animation-name: crack-right;
+  animation-delay: var(--crack-delay);
+  animation-duration: var(--crack-duration);
+  animation-fill-mode: forwards;
+}
+
+#title-middle {
+  --crack-clip: polygon(
+    41.73% 23.68%,
+    48.4% 38.16%,
+    55.62% 59.29%,
+    65.64% 78.93%,
+    65.44% 86.84%,
+    43.28% 86.84%,
+    43.88% 69.39%,
+    38.63% 66.75%,
+    26.69% 46.24%,
+    21.12% 44.58%,
+    18.23% 43.47%,
+    14.06% 23.7%
+  );
+
+  animation-name: crack;
+  animation-delay: var(--crack-delay);
+  animation-duration: var(--crack-duration);
+  animation-fill-mode: forwards;
+}
+
+#crack {
+  animation-name: show;
+  animation-delay: var(--crack-delay);
+  animation-duration: var(--crack-duration);
+  animation-fill-mode: forwards;
+}
+
+@keyframes scale {
+  to {
+    scale: 1.25; /* Bigger branding during load */
+  }
+}
+
+@keyframes blur {
+  to {
+    filter: blur(0.1em);
+  }
+}
+
+@keyframes quiver {
+  to {
+    translate: 0 -1px;
+  }
+}
+
+@keyframes shake {
+  to {
+    translate: 0 -5px;
+  }
+}
+
+@keyframes crack {
+  to {
+    clip-path: var(--crack-clip);
+  }
+}
+
+@keyframes crack-right {
+  to {
+    clip-path: var(--crack-clip);
+    translate: 3% -2%;
+    rotate: 4deg; /* Added rotation for realism */
+  }
+}
+
+@keyframes crack-left {
+  to {
+    clip-path: var(--crack-clip);
+    translate: -2% 1.5%;
+    rotate: -3deg; /* Added rotation for realism */
+  }
+}
+
+@keyframes show {
+  to {
+    opacity: 1;
+  }
+}

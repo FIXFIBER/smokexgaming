@@ -1,0 +1,124 @@
+:root {
+    --black: #0a0a0a;
+    --gold: #ffd700;
+    --white: #ffffff;
+    --glass: rgba(255, 255, 255, 0.07);
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+    margin: 0;
+    background-color: var(--black);
+    color: var(--white);
+    font-family: 'Space Grotesk', sans-serif;
+    min-height: 100vh;
+}
+
+.mobile-auth-wrapper {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.auth-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    padding-top: 10px;
+}
+
+.back-link { color: var(--gold); font-size: 20px; text-decoration: none; }
+.back-link:active { opacity: 0.5; }
+
+.brand {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    letter-spacing: 2px;
+    font-size: 18px;
+}
+.brand b { color: var(--gold); }
+
+.auth-card { 
+    width: 100%; 
+    flex: 1; 
+    position: relative;
+}
+
+.auth-tabs {
+    display: flex;
+    gap: 35px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+    padding-bottom: 15px;
+}
+
+.tab {
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 2px;
+    transition: color 0.3s ease;
+}
+
+.tab.active { color: var(--gold); position: relative; }
+.tab.active::after {
+    content: ''; position: absolute; bottom: -16px; left: 0; width: 100%; height: 2.5px; background: var(--gold);
+    box-shadow: 0 0 10px var(--gold);
+}
+
+.auth-view { display: none; }
+.auth-view.active { display: block; }
+
+.input-group { margin-bottom: 25px; }
+.input-group label {
+    display: block; font-size: 11px; color: var(--gold); letter-spacing: 3px; margin-bottom: 10px; opacity: 0.8;
+}
+
+.input-group input {
+    width: 100%;
+    height: 55px;
+    background: var(--glass);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 0 15px;
+    color: white;
+    font-size: 16px; /* Fix for iOS Zoom */
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-group input:focus { border-color: var(--gold); background: rgba(255, 215, 0, 0.05); }
+
+.submit-btn {
+    width: 100%;
+    height: 60px;
+    background: var(--gold);
+    color: black;
+    border: none;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-top: 20px;
+    transition: transform 0.1s, filter 0.3s;
+}
+
+.submit-btn:active { transform: scale(0.98); filter: brightness(0.9); }
+
+.forgot-trigger { text-align: right; font-size: 13px; color: rgba(255, 255, 255, 0.5); margin-top: -10px; font-weight: 500; }
+.back-to-tab { text-align: center; margin-top: 30px; font-size: 12px; color: var(--gold); text-decoration: underline; }
+
+.msg-container {
+    position: fixed;
+    top: 0; left: 0; width: 100%; z-index: 1000;
+    background: #ff4444; color: white; padding: 15px; text-align: center;
+    transform: translateY(-100%); transition: 0.4s;
+    font-size: 13px; font-weight: bold;
+}
+.msg-container.show { transform: translateY(0); }
+.msg-container.success { background: var(--gold); color: black; }
+
+.submit-btn:disabled { opacity: 0.6; pointer-events: none; }

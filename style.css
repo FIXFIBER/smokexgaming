@@ -1,0 +1,357 @@
+:root {
+  --bg: #090d00;
+  --text: #FFF9E3;
+  --sub-text: #888;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg);
+  color: rgba(255, 255, 255, 0.25);
+  font-family: "Neuton", serif;
+  text-align: center;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+.bg-glow {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.01) 0%, transparent 70%); /* Reduced glow opacity */
+  z-index: -1;
+}
+
+/* Video Background System */
+.video-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  overflow: hidden;
+}
+
+#bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6; /* Increased slightly to ensure it's visible through the blur */
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.8) 100%);
+}
+
+/* Noise Texture */
+.noise {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Floating Shapes Background */
+.floating-shapes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+  transition: transform 0.6s ease-in, filter 0.6s ease-in;
+}
+
+.shape {
+  position: absolute;
+  opacity: 0.02; /* Even lower opacity for subtle background */
+  border: 2px solid var(--text); /* Thin lines */
+  animation: float 20s infinite linear;
+  filter: blur(2px); /* Slightly more blur for depth */
+}
+
+.shape.triangle {
+  width: 400px; /* Bigger */
+  height: 400px; /* Bigger */
+  border: 2px solid var(--text); /* Ensure thin border */
+  background: transparent; /* No background fill */
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  -webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  /* Removed redundant border fallback */
+  top: 10%;
+  left: 5%;
+}
+
+.shape.circle {
+  width: 350px; /* Bigger */
+  height: 350px; /* Bigger */
+  border-radius: 50%;
+  bottom: 15%;
+  right: 10%;
+  animation-duration: 25s;
+}
+
+.shape.cross {
+  width: 300px; /* Bigger */
+  height: 300px; /* Bigger */
+  border: none;
+  top: 20%;
+  right: 15%;
+  animation-duration: 18s;
+}
+
+.shape.cross::before, .shape.cross::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 100%; height: 2px; /* Thin lines */
+  background: var(--text);
+}
+.shape.cross::before { transform: translate(-50%, -50%) rotate(45deg); }
+.shape.cross::after { transform: translate(-50%, -50%) rotate(-45deg); }
+
+.shape.square {
+  width: 150px;
+  height: 150px;
+  width: 280px; /* Bigger */
+  height: 280px; /* Bigger */
+  bottom: 20%;
+  left: 15%;
+  animation-duration: 22s;
+}
+
+.shape.analog {
+  width: 250px; /* Bigger */
+  height: 250px; /* Bigger */
+  border-radius: 50%;
+  border-width: 2px; /* Thin border */
+  top: 40%;
+  left: 45%;
+  opacity: 0.05;
+}
+
+.shape.analog::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 50%; height: 50%; /* Adjusted size */
+  border: 2px solid var(--text); /* Thin border */
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  25% { transform: translate(150px, 100px) rotate(90deg) scale(1.05); } /* Longer movement */
+  50% { transform: translate(-100px, 200px) rotate(180deg) scale(0.95); }
+  75% { transform: translate(200px, -50px) rotate(270deg) scale(1.1); }
+  100% { transform: translate(0, 0) rotate(360deg) scale(1); }
+}
+
+/* Morph Effect: Blur + Threshold */
+.morph-container {
+  position: relative;
+  font-size: clamp(3rem, 15vw, 10rem);
+  font-weight: 800;
+  filter: url(#threshold) drop-shadow(0 0 10px rgba(255, 215, 0, 0.5)); /* Enhanced glow for text */
+  user-select: none;
+  text-transform: uppercase;
+  letter-spacing: .5em;
+  display: inline-block;
+  border: 4px double rgba(255, 249, 227, 0.25);
+  border-width: 4px 0;
+  padding: 1.5em 0;
+  width: 90%;
+  max-width: 40em;
+}
+
+.word-rotator {
+  position: relative;
+  height: 1.2em;
+  width: 100%;
+  min-width: 14ch;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.word {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0;
+  padding: .25em 0 .325em;
+  white-space: nowrap;
+  text-shadow: 0 0 80px rgba(255, 249, 227, 0.5);
+  background: url(https://i.ibb.co/RDTnNrT/animated-text-fill.png) repeat-y;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-transform: translate3d(0,0,0);
+  -webkit-backface-visibility: hidden;
+}
+
+.video-ready .hero {
+  opacity: 1; /* Fade in everything once ready */
+}
+
+.video-ready .word {
+  animation: rotate-words 4s infinite ease-in-out, aitf 80s linear infinite;
+}
+
+@keyframes aitf {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.word:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.word:nth-child(2) {
+  animation-delay: 2s;
+}
+
+@keyframes rotate-words {
+  0% {
+    opacity: 0;
+    filter: blur(20px);
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+
+  5% {
+    opacity: 0.8; /* Slightly more visible during blur */
+    filter: blur(8px); /* Less aggressive blur */
+  }
+
+  10%,
+  40% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  45% {
+    opacity: 0.6; /* Slightly more visible during blur */
+    filter: blur(8px); /* Less aggressive blur */
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+    filter: blur(15px); /* Slightly less aggressive blur */
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+/* Content Section */
+.content {
+  padding: 8rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.content-text h2 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  line-height: 1.1;
+}
+
+.content-text p {
+  font-size: 1.1rem;
+  color: #aaa;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 2rem;
+  border-radius: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Subtle hover gradient */
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 0.06),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.filters {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Transition State */
+body.is-transitioning .floating-shapes {
+  transform: scale(1.1);
+  filter: blur(10px);
+}
+
+/* Flashbang Transition */
+#flashbang {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease-in;
+}
+
+@media (max-width: 768px) {
+}

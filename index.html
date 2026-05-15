@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smoke X Gaming | Intro</title>
+  <script>
+    if (window.innerWidth <= 768) {
+      window.location.replace('landing-mobile.html');
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Neuton:wght@400&family=Oswald:wght@700&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" /> 
+  <style>
+    /* Shape Shifter Styles */
+    .canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      pointer-events: none;
+    }
+
+    .ui {
+      position: fixed;
+      left: 50%;
+      bottom: 12%;
+      width: 80%;
+      max-width: 400px;
+      transform: translateX(-50%);
+      z-index: 101;
+      font-family: "Space Grotesk", sans-serif;
+    }
+
+    .ui-input {
+      width: 100%;
+      height: 50px;
+      background: none;
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+      text-align: center;
+      border: none;
+      border-bottom: 2px solid white;
+    }
+
+    .ui-input:focus {
+      outline: none;
+      border: none;
+      border-bottom: 2px solid white;
+    }
+
+    .help {
+      position: fixed;
+      top: 40px;
+      right: 40px;
+      width: 25px;
+      height: 25px;
+      text-align: center;
+      font-size: 13px;
+      line-height: 27px;
+      font-weight: bold;
+      cursor: pointer;
+      background: #fff;
+      color: #000;
+      opacity: .5;
+      z-index: 101;
+      transition: opacity 0.2s;
+    }
+
+    .help:hover { opacity: 1; }
+
+    .overlay {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 550px;
+      height: 490px;
+      margin: -260px 0 0 -275px;
+      opacity: 0;
+      transform: rotateY(90deg);
+      transition: transform 0.7s cubic-bezier(0.694, 0.0482, 0.335, 1), opacity 0.7s;
+      z-index: 102;
+      background: rgba(255, 255, 255, 0.95);
+      color: #333;
+      padding: 20px;
+      pointer-events: none;
+    }
+
+    .overlay--visible {
+      opacity: 1;
+      transform: rotateY(0);
+      pointer-events: auto;
+    }
+
+    .tabs-label {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+    }
+    .tabs-label--active { border-bottom-color: #333; }
+    .tabs-panel { display: none; padding: 20px 0; }
+    .tabs-panel--active { display: block; }
+    .commands-item { list-style: none; padding: 10px; cursor: pointer; border-bottom: 1px solid #eee; }
+    .commands-item:hover { background: #f9f9f9; }
+    .commands-item-title { font-weight: bold; width: 100px; display: inline-block; }
+    
+    @media (max-width: 600px) {
+      .overlay { 
+        width: 95%; 
+        left: 2.5%; 
+        margin-left: 0; 
+        height: 70vh; 
+        top: 15%; 
+        margin-top: 0; 
+      }
+      .help {
+        top: 20px;
+        right: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="noise"></div>
+
+  <div class="video-container">
+    <video id="bg-video" autoplay muted loop playsinline preload="auto">
+      <source id="video-source" type="video/mp4">
+    </video>
+    <div class="video-overlay"></div>
+  </div>
+
+  <div class="floating-shapes">
+    <div class="shape triangle"></div>
+    <div class="shape circle"></div>
+    <div class="shape cross"></div>
+    <div class="shape square"></div>
+    <div class="shape analog"></div>
+    <div class="shape circle" style="top: 5%; left: 80%; animation-delay: -10s;"></div> <!-- Added 6th shape -->
+  </div>
+
+  <div class="bg-glow"></div>
+
+  <!-- Shape Shifter HTML Elements -->
+  <canvas class="canvas"></canvas>
+
+  <div class="help">?</div> 
+
+  <div class="ui">
+    <input class="ui-input" type="text" placeholder="SMOKEX GAMING" />
+  </div>
+
+  <div class="overlay">
+    <div class="tabs">
+      <div class="tabs-labels">
+        <span class="tabs-label">Commands</span>
+        <span class="tabs-label">Info</span>
+      </div>
+
+      <div class="tabs-panels">
+        <ul class="tabs-panel commands">
+          <li class="commands-item"><span class="commands-item-title">Text</span><span class="commands-item-info" data-demo="SMOKEX GAMING">Type anything</span></li>
+          <li class="commands-item"><span class="commands-item-title">Countdown</span><span class="commands-item-info" data-demo="#countdown 10">#countdown</span></li>
+          <li class="commands-item"><span class="commands-item-title">Time</span><span class="commands-item-info" data-demo="#time">#time</span></li>
+          <li class="commands-item"><span class="commands-item-title">Circle</span><span class="commands-item-info" data-demo="#circle 25">#circle</span></li>
+        </ul>
+
+        <div class="tabs-panel ui-details">
+          <div class="ui-details-content">
+            <h1>Shape Shifter</h1>
+            <p>Interactive particle system using HTML5 Canvas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="flashbang"></div>
+  <script src="script.js"></script>
+
+  <script>
+    // Shape Shifter Logic
+    var S = {
+      init: function () {
+        var action = window.location.href,
+            i = action.indexOf('?a=');
+
+        S.Drawing.init('.canvas');
+        document.body.classList.add('body--ready');
+
+        if (i !== -1) {
+          S.UI.simulate(decodeURI(action).substring(i + 3), false);
+        } else {
+          // Set initial animation to SMOKEX GAMING
+          S.UI.simulate('SMOKEX|GAMING', true);
+        }
+      
+        S.Drawing.loop(function () {
+          S.Shape.render();
+        });
+      }
+    };
+
+    S.Drawing = (function () {
+      var canvas, context, renderFn;
+      var requestFrame = window.requestAnimationFrame || function(callback) { window.setTimeout(callback, 1000 / 60); };
+
+      return {
+        init: function (el) {
+          canvas = document.querySelector(el);
+          context = canvas.getContext('2d');
+          this.adjustCanvas();
+          window.addEventListener('resize', () => this.adjustCanvas());
+        },
+        loop: function (fn) {
+          renderFn = !renderFn ? fn : renderFn;
+          this.clearFrame();
+          renderFn();
+          requestFrame.call(window, this.loop.bind(this));
+        },
+        adjustCanvas: function () {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        },
+        clearFrame: function () {
+          context.clearRect(0, 0, canvas.width, canvas.height);
+        },
+        getArea: function () { return { w: canvas.width, h: canvas.height }; },
+        drawCircle: function (p, c) {
+          context.fillStyle = c.render();
+          context.beginPath();
+          context.arc(p.x, p.y, p.z, 0, 2 * Math.PI, true);
+          context.closePath();
+          context.fill();
+        }
+      }
+    }());
+
+    S.UI = (function () {
+      var input = document.querySelector('.ui-input'),
+          help = document.querySelector('.help'),
+          commands = document.querySelector('.commands'),
+          overlay = document.querySelector('.overlay'),
+          canvas = document.querySelector('.canvas'),
+          interval, currentAction, sequence = [], cmd = '#';
+
+      function formatTime(date) {
+        var h = date.getHours(), m = date.getMinutes();
+        m = m < 10 ? '0' + m : m;
+        return h + ':' + m;
+      }
+
+      function timedAction(fn, delay, max, reverse) {
+        clearInterval(interval);
+        currentAction = reverse ? max : 1;
+        fn(currentAction);
+        if (!max || (!reverse && currentAction < max) || (reverse && currentAction > 0)) {
+          interval = setInterval(function () {
+            currentAction = reverse ? currentAction - 1 : currentAction + 1;
+            fn(currentAction);
+            if ((!reverse && max && currentAction === max) || (reverse && currentAction === 0)) clearInterval(interval);
+          }, delay);
+        }
+      }
+
+      function performAction(value, isIntro) {
+        overlay.classList.remove('overlay--visible');
+        var parts = typeof(value) === 'object' ? value : value.split('|');
+        sequence = sequence.concat(parts);
+        input.value = '';
+        var totalParts = parts.length;
+
+        timedAction(function (index) {
+          var current = sequence.shift();
+          var action = (current && current[0] === cmd) ? current.substring(1).split(' ')[0] : null;
+          var val = (current && current.split(' ').length > 1) ? current.split(' ')[1] : null;
+
+          switch (action) {
+            case 'countdown':
+              var count = parseInt(val) || 10;
+              timedAction(i => {
+                if (i === 0) sequence.length ? performAction(sequence) : S.Shape.switchShape(S.ShapeBuilder.letter(''));
+                else S.Shape.switchShape(S.ShapeBuilder.letter(i), true);
+              }, 1000, count, true);
+              break;
+            case 'time':
+              S.Shape.switchShape(S.ShapeBuilder.letter(formatTime(new Date())));
+              break;
+            default:
+              S.Shape.switchShape(S.ShapeBuilder.letter(current));
+          }
+
+          // Redirect logic for the initial intro sequence
+          if (isIntro && index === totalParts) {
+            setTimeout(() => {
+              const flash = document.getElementById('flashbang');
+              document.body.classList.add('is-transitioning');
+              if (flash) flash.style.opacity = '1';
+              setTimeout(() => {
+                const isMobile = window.innerWidth <= 768;
+                window.location.href = isMobile ? 'landing-mobile.html' : 'landing.html';
+              }, 600);
+            }, 2500); // Wait on the final word "GAMING" before triggering redirect
+          }
+        }, 2000, sequence.length);
+      }
+
+      function init() {
+        document.body.addEventListener('keydown', (e) => {
+          if (e.keyCode === 13 && input.value) { performAction(input.value); }
+        });
+        help.addEventListener('click', () => overlay.classList.toggle('overlay--visible'));
+        commands.addEventListener('click', (e) => {
+          var el = e.target.closest('.commands-item');
+          if (el) {
+            var demo = el.querySelector('.commands-item-info').getAttribute('data-demo');
+            if (demo) performAction(demo);
+          }
+        });
+      }
+      init();
+      return { simulate: (a, isIntro) => performAction(a, isIntro) };
+    }());
+
+    S.Point = function (args) {
+      this.x = args.x; this.y = args.y; this.z = args.z; this.a = args.a; this.h = args.h;
+    };
+
+    S.Color = function (r, g, b, a) { this.r = r; this.g = g; this.b = b; this.a = a; };
+    S.Color.prototype.render = function () { return 'rgba(' + this.r + ',' + this.g + ',' + this.b + ',' + this.a + ')'; };
+
+    S.Dot = function (x, y) {
+      this.p = new S.Point({ x: x, y: y, z: 5, a: 1, h: 0 });
+      this.e = 0.07; this.s = true;
+      this.c = new S.Color(255, 255, 255, this.p.a);
+      this.t = new S.Point({ x: x, y: y, z: 5, a: 1, h: 0 });
+      this.q = [];
+    };
+
+    S.Dot.prototype = {
+      _draw: function () { this.c.a = this.p.a; S.Drawing.drawCircle(this.p, this.c); },
+      _moveTowards: function (n) {
+        var dx = this.p.x - n.x, dy = this.p.y - n.y, d = Math.sqrt(dx * dx + dy * dy), e = this.e * d;
+        if (d > 1) { this.p.x -= (dx / d) * e; this.p.y -= (dy / d) * e; return false; }
+        return true;
+      },
+      _update: function () {
+        if (this._moveTowards(this.t)) {
+          var p = this.q.shift();
+          if (p) {
+            this.t.x = p.x || this.p.x; this.t.y = p.y || this.p.y;
+            this.t.z = p.z || this.p.z; this.t.a = p.a || this.p.a;
+          }
+        }
+        this.p.a = Math.max(0.1, this.p.a - (this.p.a - this.t.a) * 0.05);
+        this.p.z = Math.max(1, this.p.z - (this.p.z - this.t.z) * 0.05);
+      },
+      render: function () { this._update(); this._draw(); }
+    };
+
+    S.ShapeBuilder = (function () {
+      var gap = 13;
+      var shapeCanvas = document.createElement('canvas');
+      var shapeContext = shapeCanvas.getContext('2d');
+      
+      function fit() {
+        gap = window.innerWidth < 768 ? 16 : 13; // Higher gap for mobile performance
+        shapeCanvas.width = Math.floor(window.innerWidth / gap) * gap;
+        shapeCanvas.height = Math.floor(window.innerHeight / gap) * gap;
+        shapeContext.textBaseline = 'middle'; shapeContext.textAlign = 'center';
+      }
+
+      return {
+        letter: function (l) {
+          fit();
+          // Truly responsive font size based on string length and screen width
+          var fontSize = Math.min(window.innerWidth / (l.length * 0.7), window.innerHeight * 0.25);
+          fontSize = Math.max(fontSize, 40); // Ensure it doesn't disappear
+          shapeContext.font = 'bold ' + fontSize + 'px sans-serif';
+          
+          shapeContext.clearRect(0, 0, shapeCanvas.width, shapeCanvas.height);
+          shapeContext.fillText(l, shapeCanvas.width / 2, shapeCanvas.height / 2);
+          var pixels = shapeContext.getImageData(0, 0, shapeCanvas.width, shapeCanvas.height).data;
+          var dots = [];
+          for (var y = 0; y < shapeCanvas.height; y += gap) {
+            for (var x = 0; x < shapeCanvas.width; x += gap) {
+              if (pixels[((x + (y * shapeCanvas.width)) * 4) + 3] > 0) dots.push(new S.Point({ x: x, y: y }));
+            }
+          }
+          return { dots: dots, w: shapeCanvas.width, h: shapeCanvas.height };
+        }
+      };
+    }());
+
+    S.Shape = (function () {
+      var dots = [], width = 0, height = 0;
+      return {
+        switchShape: function (n) {
+          var a = S.Drawing.getArea();
+          var offsetX = a.w / 2 - n.w / 2, offsetY = a.h / 2 - n.h / 2;
+          if (n.dots.length > dots.length) {
+            for (var i = dots.length; i < n.dots.length; i++) dots.push(new S.Dot(a.w / 2, a.h / 2));
+          }
+          for (var i = 0; i < n.dots.length; i++) {
+            dots[i].t.x = n.dots[i].x + offsetX; dots[i].t.y = n.dots[i].y + offsetY;
+            dots[i].t.a = 1; dots[i].t.z = 5;
+          }
+          for (var i = n.dots.length; i < dots.length; i++) {
+            dots[i].t.x = Math.random() * a.w; dots[i].t.y = Math.random() * a.h;
+            dots[i].t.a = 0; dots[i].t.z = 0;
+          }
+        },
+        render: function () { dots.forEach(d => d.render()); }
+      }
+    }());
+
+    S.init();
+  </script>
+</body>
+</html>
